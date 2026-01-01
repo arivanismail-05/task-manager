@@ -1,91 +1,84 @@
-# 🛡️ PostgreSQL Task Manager (Backend)
+# 🛡️ PostgreSQL Task Manager (Backend API)
 
-A robust, enterprise-grade REST API built with **Laravel 12** and **PostgreSQL**. This project demonstrates a clean separation of concerns, serving as the "Brain" for a separate Frontend application.
+This is the **Backend API** for a Task Manager application. It acts as the "Brain" of the project, handling data security, validation, and storage.
 
-It manages **Categories** and **Tasks** using a strictly typed database schema with foreign key constraints (Cascade Deletes) and strict API validation.
+It is built with **Laravel 12** and **PostgreSQL** to demonstrate an enterprise-grade database structure (using Foreign Keys and Cascade Deletes).
 
 ---
 
 ## 🚀 Architecture
-This project is the **Backend API**. It is designed to work with a decoupled Frontend.
+This project is decoupled (separated) into two parts:
 
-* **Backend (This Repo):** Laravel 12 + PostgreSQL
-* **Frontend:** HTML5 + Vanilla JS + Tailwind CSS
-* **🔗 [View the Frontend Repository Here](https://github.com/arivanismail-05/task-client-task-manager)**
+1.  **Backend (This Repository):** * **Logic:** Laravel 12 Controllers & Routes
+    * **Database:** PostgreSQL 16
+    * **Role:** Provides a REST API (JSON) for the frontend to consume.
+
+2.  **Frontend (Separate Repository):**
+    * **Tech:** HTML + Vanilla JavaScript
+    * **Role:** A minimal interface to test the API connection.
+    * **🔗 [View the Frontend Repository Here](https://github.com/arivanismail-05/task-client-task-manager)**
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack (Backend)
 * **Framework:** Laravel 12
-* **Database:** PostgreSQL 16 (The "Tank")
-* **Server:** Apache/Nginx (via Laragon/XAMPP)
-* **API Standard:** RESTful JSON
+* **Database:** PostgreSQL (Connection via `pgsql` driver)
+* **API Style:** RESTful JSON
+* **Server:** Apache/Nginx (Local Development via Laragon/XAMPP)
 
 ---
 
-## ⚙️ Setup & Installation
+## ⚙️ How to Run This Backend
 
-**Prerequisites:** PHP 8.2+, Composer, PostgreSQL.
-
-1.  **Clone the Repository**
+1.  **Clone the Repo**
     ```bash
-    git clone [https://github.com/your-username/task-manager-backend.git](https://github.com/your-username/task-manager-backend.git)
-    cd task-manager-backend
+    git clone [https://github.com/arivanismail-05/task-manager.git](https://github.com/arivanismail-05/task-manager.git)
+    cd task-manager
     ```
 
-2.  **Install Dependencies**
+2.  **Setup Database**
+    * Ensure PostgreSQL is running.
+    * Create a database named `task_manager`.
+    * Update your `.env` file with your DB credentials.
+
+3.  **Install & Migrate**
     ```bash
     composer install
-    ```
-
-3.  **Configure Environment**
-    * Duplicate the example file: `cp .env.example .env`
-    * Open `.env` and configure your PostgreSQL settings:
-        ```ini
-        DB_CONNECTION=pgsql
-        DB_HOST=127.0.0.1
-        DB_PORT=5432
-        DB_DATABASE=task_manager
-        DB_USERNAME=postgres
-        DB_PASSWORD=your_password
-        ```
-
-4.  **Generate Key & Migrate**
-    ```bash
-    php artisan key:generate
     php artisan migrate
     ```
 
-5.  **Run the Server**
+4.  **Start Server**
     ```bash
     php artisan serve
     ```
-    The API will be available at `http://127.0.0.1:8000/api`.
+    The API will be live at: `http://127.0.0.1:8000/api`
 
 ---
 
-## 📡 API Endpoints
+## 📝 API Endpoints
+These are the routes available for the frontend to use:
 
-| Method | Endpoint | Description | Payload Example |
-| :--- | :--- | :--- | :--- |
-| `GET` | `/api/categories` | List all categories | - |
-| `POST` | `/api/categories` | Create a category | `{"name": "Work"}` |
-| `GET` | `/api/tasks` | List all tasks | - |
-| `POST` | `/api/tasks` | Create a task | `{"title": "Fix bug", "category_id": 1}` |
-
----
-
-## 🤝 Contributing & Challenges for Visitors
-
-This project is built as a **Solid Foundation**. It is fully functional, but purposefully lightweight to allow you to practice your skills.
-
-**Want to contribute? Try implementing these features:**
-
-1.  **Frontend Design:** The current frontend is minimal. Connect your own React, Vue, or polished Tailwind design to this API.
-2.  **Update & Delete:** The Controller logic for `update()` and `destroy()` exists in the code, but the Frontend UI needs buttons to trigger them. Can you add them?
-3.  **Authentication:** Try adding Laravel Sanctum to protect the routes so only logged-in users can manage tasks.
+| Method | Endpoint | Action |
+| :--- | :--- | :--- |
+| `GET` | `/api/categories` | Get all categories |
+| `POST` | `/api/categories` | Create a new category |
+| `DELETE` | `/api/categories/{id}` | Delete a category (and its tasks) |
+| `GET` | `/api/tasks` | Get all tasks |
+| `POST` | `/api/tasks` | Create a new task |
+| `PUT` | `/api/tasks/{id}` | Update task (e.g., mark as done) |
 
 ---
 
-## 📝 License
-This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 💡 Note to Visitors & Challenges
+
+This project serves as a **Backend Foundation**. I have intentionally kept the Frontend simple (Plain HTML/JS) to focus on the Backend logic.
+
+**How to use this:**
+1.  Run this backend server.
+2.  Open the linked Frontend repository (`index.html`) to interact with the app.
+
+**Challenges for You:**
+I invite you to fork this repo and improve it:
+* **Add Design:** The current frontend has no CSS. Feel free to add Tailwind, Bootstrap, or your own custom design to make it look professional.
+* **Implement Features:** The Backend includes API routes for `Update` (PUT) and `Delete` (DELETE). Can you add buttons in the frontend to trigger these?
+* **Architecture:** Try replacing the HTML frontend with a React or Vue.js application.
