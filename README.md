@@ -11,7 +11,7 @@ This project is the **Backend API**. It is designed to work with a decoupled Fro
 
 * **Backend (This Repo):** Laravel 12 + PostgreSQL
 * **Frontend:** HTML5 + Vanilla JS + Tailwind CSS
-* **🔗 [View the Frontend Repository Here]([(https://github.com/arivanismail-05/task-client-task-manager)])**
+* **🔗 [View the Frontend Repository Here](https://github.com/arivanismail-05/task-client-task-manager)**
 
 ---
 
