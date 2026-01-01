@@ -20,7 +20,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return;
     }
 
     /**
@@ -47,7 +47,7 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return response()->json(Task::with('category')->findOrFail($id));
     }
 
     /**
@@ -55,7 +55,7 @@ class TaskController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return response()->json(Task::findOrFail($id));
     }
 
     /**

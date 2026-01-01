@@ -20,7 +20,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return;
     }
 
     /**
@@ -44,7 +44,7 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return response()->json(Category::findOrFail($id));
     }
 
     /**
@@ -52,7 +52,7 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return response()->json(Category::findOrFail($id));
     }
 
     /**
